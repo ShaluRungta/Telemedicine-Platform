@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: consultation-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/telemedicine_consultation
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: 8002
+
+logging:
+  level:
+    com.telemedicine: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+
+video:
+  provider: agora
+  app-id: ${AGORA_APP_ID}
+  app-certificate: ${AGORA_APP_CERTIFICATE}
+
+whatsapp:
+  api-url: https://api.whatsapp.com/send
+  enabled: true
