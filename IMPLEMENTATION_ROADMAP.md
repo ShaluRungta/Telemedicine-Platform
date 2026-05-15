@@ -2,10 +2,12 @@
 
 ## Project Overview
 
-**Telemedicine Platform for Sexual Health Consultations**
+**Telemedicine Platform for Sexual Health Consultations (MVP - India Launch)**
 - **Status**: Project scaffold complete, ready for implementation
-- **Timeline**: 16 weeks for MVP
+- **Timeline**: 12 weeks for MVP (payments added in Phase 2)
 - **Team Size**: 4-6 developers
+- **Payment Strategy**: Manual/WhatsApp payments for MVP, Razorpay integration later
+- **Target Market**: India
 
 ## Phase 1: Foundation (Weeks 1-2)
 
@@ -102,69 +104,38 @@
 
 ---
 
-## Phase 4: Payments & Billing (Weeks 9-11)
-
-### Payment Service
-- [ ] **TODO**: Stripe integration (card payments)
-- [ ] **TODO**: Razorpay integration (India)
-- [ ] **TODO**: UPI payment support
-- [ ] **TODO**: Bank transfer support
-- [ ] **TODO**: Wallet/balance system
-- [ ] **TODO**: Payment validation and verification
-- [ ] **TODO**: Failed payment retry logic
-
-### Billing & Invoicing
-- [ ] **TODO**: Invoice generation
-- [ ] **TODO**: Doctor payout calculation (80/20 split)
-- [ ] **TODO**: Commission tracking
-- [ ] **TODO**: Tax calculation
-- [ ] **TODO**: Monthly settlement
-- [ ] **TODO**: Payout to doctor bank accounts
-
-### Refunds & Disputes
-- [ ] **TODO**: Refund processing
-- [ ] **TODO**: Dispute handling workflow
-- [ ] **TODO**: Chargeback prevention
-
-**Deliverable**: End-to-end payment flow with settlement
-
----
-
-## Phase 5: Notifications (Weeks 12-13)
+## Phase 4: Notifications (Weeks 9-11)
 
 ### Email Notifications
-- [ ] **TODO**: SendGrid/Gmail integration
+- [ ] **TODO**: Gmail integration (free tier)
 - [ ] **TODO**: Email templates (HTML)
 - [ ] **TODO**: Appointment reminders (24h, 1h)
 - [ ] **TODO**: Confirmation emails
-- [ ] **TODO**: Receipt emails
 - [ ] **TODO**: Unsubscribe functionality
 
-### SMS Notifications (Twilio)
-- [ ] **TODO**: Appointment reminders via SMS
-- [ ] **TODO**: Payment confirmation SMS
-- [ ] **TODO**: Doctor offline alerts
-- [ ] **TODO**: Message templating
-
-### WhatsApp Integration
+### WhatsApp Integration (PRIORITY for India)
 - [ ] **TODO**: WhatsApp Business API setup
 - [ ] **TODO**: Appointment confirmations
 - [ ] **TODO**: Doctor-patient chat
-- [ ] **TODO**: Prescription delivery
+- [ ] **TODO**: Prescription delivery (text + PDF)
 - [ ] **TODO**: Follow-up reminders
-- [ ] **TODO**: Message media (PDFs, images)
+- [ ] **TODO**: Payment instructions via WhatsApp
+
+### SMS Notifications (Twilio - Optional)
+- [ ] **TODO**: Appointment reminders via SMS
+- [ ] **TODO**: Doctor offline alerts
+- [ ] **TODO**: Message templating
 
 ### Push Notifications
 - [ ] **TODO**: Firebase Cloud Messaging setup
 - [ ] **TODO**: In-app notification delivery
 - [ ] **TODO**: Mobile app push notifications
-- [ ] **TODO**: Notification preferences
 
-**Deliverable**: Multi-channel notification system
+**Deliverable**: Multi-channel notification system (WhatsApp-first for India)
 
 ---
 
-## Phase 6: Frontend Development (Weeks 14-16)
+## Phase 5: Frontend Development (Weeks 12-14)
 
 ### Web Application (React)
 - [ ] **TODO**: Patient dashboard
@@ -183,6 +154,32 @@
 - [ ] **TODO**: App store deployments
 
 **Deliverable**: Fully functional web and mobile apps
+
+---
+
+## Phase 6: Payments Integration (After MVP - 2-3 weeks)
+
+### Razorpay Integration (India-First)
+- [ ] **TODO**: Razorpay API setup (better for India than Stripe)
+- [ ] **TODO**: Payment form implementation
+- [ ] **TODO**: UPI payment support
+- [ ] **TODO**: Webhook setup
+- [ ] **TODO**: Test with real transactions
+
+### Doctor Payouts
+- [ ] **TODO**: Calculate earnings (consultation amount - 20% commission)
+- [ ] **TODO**: Monthly settlement scheduling
+- [ ] **TODO**: Bank transfer integration
+- [ ] **TODO**: Payout tracking dashboard
+- [ ] **TODO**: Tax reporting
+
+### Admin Dashboard
+- [ ] **TODO**: Revenue tracking
+- [ ] **TODO**: Doctor earnings reports
+- [ ] **TODO**: Commission analytics
+- [ ] **TODO**: Payout history
+
+**Deliverable**: Production-ready payment system with Razorpay
 
 ---
 
@@ -230,8 +227,8 @@
 ### Backend Developer
 1. Complete Phase 2 (Auth) first
 2. Build Phase 3 (Consultations) core
-3. Implement Phase 4 (Payments)
-4. Setup Phase 5 (Notifications)
+3. Setup Phase 4 (Notifications) - **WhatsApp priority**
+4. Build frontend API endpoints
 
 ### Mobile Developer
 1. Setup development environment
@@ -285,55 +282,64 @@
 
 ---
 
-## Deployment Timeline
+## Deployment Timeline (MVP - 12 Weeks)
 
 ### Week 1-4: Local Development
 - All services running in Docker Compose
 - Local testing on Mac/Linux
+- Setup GitHub Actions CI/CD
 
 ### Week 5-8: Staging Environment
-- AWS deployment with small instances
+- AWS deployment (India region)
 - Production-like configuration
 - Team testing
 - Performance baseline
 
-### Week 9-16: Production Readiness
+### Week 9-12: Production Readiness & Beta Launch
 - Production cluster setup
 - Database backups configured
 - Monitoring alerts configured
+- WhatsApp integration verified
+- Beta testing with 20-30 doctors
 - Runbooks for operations
-- Incident response procedures
 
-### Week 16+: Launch
+### Week 12+: Public Launch
 - Gradual rollout to users
-- Beta testing with doctors
 - Monitor metrics closely
 - Support team training
+- Collect user feedback
+
+### Weeks 13-15: Phase 2 (Razorpay)
+- Implement payment processing
+- Doctor payout system
+- Invoice generation
+- Payment testing
 
 ---
 
 ## Critical Success Factors
 
-### Must Have for MVP
-- ✓ User authentication and authorization
-- ✓ Doctor profile with license verification
-- ✓ Consultation scheduling
-- ✓ Video call integration
-- ✓ Payment processing
-- ✓ Consultation history
+### Must Have for MVP ✅
+- ✅ User authentication and authorization
+- ✅ Doctor profile with license verification
+- ✅ Consultation scheduling
+- ✅ Video call integration (Agora)
+- ✅ Consultation history & medical records
+- ✅ WhatsApp messaging integration
+- ✅ Email notifications
 
 ### Should Have for MVP
-- Notification system
 - Doctor availability management
 - Rating/review system
+- Mobile app (React Native/Flutter)
+- Email reminders
 - Basic admin dashboard
-- Mobile app (or responsive web)
 
-### Nice to Have
-- WhatsApp integration
+### Nice to Have (Phase 2+)
+- Payment processing (Razorpay)
 - Prescription generation
+- SMS notifications
 - AI symptom checker
-- Multi-language support
 - Insurance integration
 
 ---
@@ -343,40 +349,50 @@
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|---------|-----------|
 | Video SDK delays | Medium | High | Use Agora fallback, mock API for testing |
-| Payment integration issues | Low | High | Use sandbox first, have manual payment backup |
+| WhatsApp API approval | Medium | High | Apply early, have email as fallback |
 | Database performance | Medium | High | Load test early, optimize queries before scale |
 | Team onboarding | Medium | Medium | Comprehensive documentation, pairing sessions |
 | Compliance complexity | High | High | Hire compliance consultant early |
 | Security vulnerabilities | Low | Critical | Regular security audits, penetration testing |
+| Payments delayed | Low | Low | Not needed for MVP, add in Phase 2 |
 
 ---
 
-## Budget Estimation (3-Month MVP)
+## Budget Estimation (MVP + Phase 2)
 
-### Team Costs
-- 2 Backend Engineers: $20K/month × 3 = $60K
-- 1 Frontend Engineer: $12K/month × 3 = $36K
-- 1 Mobile Engineer: $12K/month × 3 = $36K
-- 1 DevOps/QA: $10K/month × 3 = $30K
-- **Total**: $162K
+### Phase 1-2: MVP (12 weeks) + Payments (3 weeks)
 
-### Infrastructure & Services
-- AWS hosting (compute, database, storage): $2K/month × 3 = $6K
-- Agora video SDK: $1K/month × 3 = $3K
-- Stripe/payment processing (1% of rev): $2K/month × 3 = $6K
-- Monitoring & logging services: $1K/month × 3 = $3K
-- **Total**: $18K
+**Team Costs**
+- 2 Backend Engineers: $20K/month × 4 = $80K
+- 1 Frontend Engineer: $12K/month × 4 = $48K
+- 1 Mobile Engineer: $12K/month × 4 = $48K
+- 1 DevOps/QA: $10K/month × 4 = $40K
+- **Subtotal**: $216K
 
-### Software & Tools
-- CI/CD, monitoring, development tools: $2K/month × 3 = $6K
+**Infrastructure & Services**
+- AWS hosting (India region): $1.5K/month × 4 = $6K
+- Agora video SDK: $1K/month × 4 = $4K
+- WhatsApp Business API: $0.5K/month × 4 = $2K
+- Gmail (free tier) + Twilio SMS (optional): $500/month × 4 = $2K
+- Razorpay fees (Phase 2 only, ~1.95%): Varies with revenue
+- Monitoring & logging: $500/month × 4 = $2K
+- **Subtotal**: $16K
 
-### Compliance & Security
-- Penetration testing: $5K
-- Legal/Compliance review: $10K
+**Software & Tools**
+- GitHub, CI/CD, dev tools: $1K/month × 4 = $4K
+
+**Compliance & Security**
+- Legal/Compliance review (India regulations): $8K
 - Security audit: $5K
-- **Total**: $20K
+- **Subtotal**: $13K
 
-**Grand Total: ~$206K for 3-month MVP**
+**Grand Total: ~$249K for MVP + Payment Integration**
+
+**Cost Savings vs. 3-Month MVP:**
+- ✅ No Stripe fee integration (will use Razorpay)
+- ✅ Focused team (save on management overhead)
+- ✅ India infrastructure is cheaper than Western pricing
+- **Realistic total: ~$200-220K for market launch**
 
 ---
 

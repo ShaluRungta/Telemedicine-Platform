@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
@@ -23,7 +22,6 @@ import java.time.LocalDateTime;
 public class ConsultationService {
 
     private final ConsultationRepository consultationRepository;
-    private static final BigDecimal PLATFORM_COMMISSION_PERCENTAGE = new BigDecimal("0.20");
 
     public ConsultationResponse scheduleConsultation(String patientId, ConsultationRequest request) {
         User patient = new User();
@@ -32,18 +30,12 @@ public class ConsultationService {
         User doctor = new User();
         doctor.setId(request.getDoctorId());
 
-        var existingConsultation = consultationRepository.findByPatientId(patientId, null);
-        if (existingConsultation != null && existingConsultation.hasContent()) {
-            log.warn("Patient {} already has pending consultations", patientId);
-        }
-
         Consultation consultation = Consultation.builder()
             .patient(patient)
             .doctor(doctor)
             .patientQuery(request.getPatientQuery())
             .scheduledAt(request.getScheduledAt())
             .status(Consultation.ConsultationStatus.SCHEDULED)
-            .totalAmount(calculateConsultationFee(60))
             .paymentStatus(Consultation.PaymentStatus.PENDING)
             .build();
 
@@ -138,14 +130,10 @@ public class ConsultationService {
         }
 
         consultation.setStatus(Consultation.ConsultationStatus.CANCELLED);
-        consultation.setPaymentStatus(Consultation.PaymentStatus.REFUNDED);
+        consultation.setPaymentStatus(Consultation.PaymentStatus.PENDING);
 
         consultationRepository.save(consultation);
         log.info("Consultation cancelled: {}", consultationId);
-    }
-
-    private BigDecimal calculateConsultationFee(int durationMinutes) {
-        return new BigDecimal(durationMinutes).multiply(new BigDecimal("5.00"));
     }
 
     private ConsultationResponse mapToResponse(Consultation consultation) {
